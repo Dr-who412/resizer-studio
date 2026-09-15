@@ -1,0 +1,6 @@
+{
+  "name": "Resizer Studio",
+  "description": "Simple, fast image resizer and developer asset toolkit. Easily resize, crop, add rounded corners, and export store-ready images in seconds.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

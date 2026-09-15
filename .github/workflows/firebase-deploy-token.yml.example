@@ -1,0 +1,38 @@
+# Alternative: If you prefer using FIREBASE_TOKEN instead of a Service Account
+# 1. Run `npx firebase-tools login:ci` locally in your terminal to get a token.
+# 2. Add the token as a secret named FIREBASE_TOKEN in your GitHub repository Settings -> Secrets and variables -> Actions.
+# 3. Rename this file to `firebase-deploy.yml` to use it.
+
+name: Deploy to Firebase using Token (Alternative)
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Build application
+        run: npm run build
+
+      - name: Deploy to Firebase Hosting & Rules
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting,firestore:rules
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
