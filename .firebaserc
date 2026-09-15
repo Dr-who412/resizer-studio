@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "resize-studio-20e56"
+  },
+  "targets": {
+    "resize-studio-20e56": {
+      "hosting": {
+        "resizer-studio": [
+          "resizer-studio"
+        ]
+      }
+    }
   }
 }

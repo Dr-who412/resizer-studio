@@ -1,10 +1,20 @@
 # Deployment Guide: GitHub Actions & Firebase Hosting
 
-This project is fully configured for automated CI/CD deployment to **Firebase Hosting** (`resize-studio-20e56`) via **GitHub Actions**.
+This project is configured for automated CI/CD deployment to **https://resizer-studio.web.app** via **GitHub Actions** under project `resize-studio-20e56`.
 
 ---
 
-## What You Need to Add in GitHub
+## Step 1: Enable `resizer-studio` in Firebase Console (One-Time)
+To allow Firebase to host on `resizer-studio.web.app`:
+1. Open the [Firebase Console Hosting Page](https://console.firebase.google.com/project/resize-studio-20e56/hosting).
+2. Scroll to the **Custom domains / Sites** section and click **"Add another site"** (or 3-dots menu -> Add site).
+3. Enter `resizer-studio` as your site name.
+4. Click **Save** / **Add site**.
+   *(Note: If `resizer-studio` is already taken globally by another Google account, Firebase will notify you so you can pick a related available name like `resizer-studio-app`)*.
+
+---
+
+## Step 2: What You Need to Add in GitHub
 
 You only need to add **ONE Secret** to your GitHub repository:
 
@@ -12,6 +22,7 @@ You only need to add **ONE Secret** to your GitHub repository:
 ```text
 FIREBASE_SERVICE_ACCOUNT_RESIZE_STUDIO_20E56
 ```
+*(or simply `FIREBASE_SERVICE_ACCOUNT`)*
 
 ### Where to Get the Secret Value:
 1. Open the [Firebase Console Service Accounts tab](https://console.firebase.google.com/project/resize-studio-20e56/settings/serviceaccounts/adminsdk).
@@ -48,7 +59,7 @@ To allow GitHub Actions to report deployment status:
 Commit and push your code to `main` or `master`:
 ```bash
 git add .
-git commit -m "Deploy Resizer Studio"
+git commit -m "Deploy to resizer-studio.web.app"
 git push origin main
 ```
 GitHub Actions will automatically build and deploy.
@@ -62,5 +73,5 @@ GitHub Actions will automatically build and deploy.
 
 ## Your Live Website URLs
 Once the workflow finishes (takes ~1 minute), your site is live at:
-- **https://resize-studio-20e56.web.app**
-- **https://resize-studio-20e56.firebaseapp.com**
+- 🌐 **https://resizer-studio.web.app**
+- 🌐 **https://resizer-studio.firebaseapp.com**

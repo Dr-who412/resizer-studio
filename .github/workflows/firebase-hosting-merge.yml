@@ -43,3 +43,4 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RESIZE_STUDIO_20E56 || secrets.FIREBASE_SERVICE_ACCOUNT }}
           channelId: live
           projectId: resize-studio-20e56
+          target: resizer-studio

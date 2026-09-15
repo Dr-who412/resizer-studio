@@ -42,3 +42,4 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RESIZE_STUDIO_20E56 || secrets.FIREBASE_SERVICE_ACCOUNT }}
           projectId: resize-studio-20e56
+          target: resizer-studio
