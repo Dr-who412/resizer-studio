@@ -81,10 +81,10 @@ export const PrivacyAndAboutPage: React.FC = () => {
 
         <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800/80">
           <h4 className="font-bold text-xs text-zinc-900 dark:text-zinc-100 mb-1.5">
-            Advertising & Monetization Transparency
+            Ad-Free & Privacy-First Experience
           </h4>
           <p className="text-[11px] leading-relaxed text-zinc-500">
-            App Asset Studio is funded solely through non-intrusive banner advertisements and voluntary community sponsorships. We never use popups, overlays, full-screen interstitial traps, or forced redirects.
+            App Asset Studio provides a clean, ad-free developer environment with client-side image processing. We never use popups, overlays, tracking cookies, full-screen interstitial traps, or forced redirects.
           </p>
         </div>
 

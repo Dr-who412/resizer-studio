@@ -6,7 +6,6 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
-import { AdBanner } from './components/layout/AdBanner';
 import { OverviewPage } from './components/pages/OverviewPage';
 import { ImageEditorTool } from './components/tools/imageEditor/ImageEditorTool';
 import { ScreenshotGeneratorTool } from './components/tools/screenshotGenerator/ScreenshotGeneratorTool';
@@ -97,9 +96,6 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased font-sans transition-colors duration-200">
       
-      {/* Top Non-Intrusive Advertisement Leaderboard Banner */}
-      <AdBanner placementKey="topLeaderboard" />
-
       {/* Main Header / Navigation */}
       <Navbar
         activeTab={activeTab}
@@ -137,13 +133,7 @@ export default function App() {
         {(activeTab === 'privacy' || activeTab === 'about') && (
           <PrivacyAndAboutPage />
         )}
-
-        {/* Inline Responsive Sponsor Strip */}
-        <AdBanner placementKey="inlineSection" />
       </main>
-
-      {/* Bottom Footer Sponsor Strip */}
-      <AdBanner placementKey="bottomBanner" />
 
       {/* Footer */}
       <Footer onNavigate={handleNavigate} />

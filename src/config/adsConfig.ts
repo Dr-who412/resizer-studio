@@ -15,7 +15,7 @@ export const defaultAdsConfig: Record<string, AdPlacementConfig> = {
   topLeaderboard: {
     id: 'top-leaderboard-ad',
     name: 'Top Header Banner (728x90 / 320x50)',
-    enabled: true,
+    enabled: false,
     type: 'banner_top',
     format: 'leaderboard',
     googleAdSenseSlotId: 'ca-pub-demo-0001',
@@ -26,7 +26,7 @@ export const defaultAdsConfig: Record<string, AdPlacementConfig> = {
   inlineSection: {
     id: 'inline-section-ad',
     name: 'Mid-Page Responsive Banner',
-    enabled: true,
+    enabled: false,
     type: 'banner_inline',
     format: 'responsive_strip',
     googleAdSenseSlotId: 'ca-pub-demo-0002',
@@ -37,7 +37,7 @@ export const defaultAdsConfig: Record<string, AdPlacementConfig> = {
   bottomBanner: {
     id: 'bottom-footer-ad',
     name: 'Footer Responsive Strip',
-    enabled: true,
+    enabled: false,
     type: 'banner_bottom',
     format: 'responsive_strip',
     googleAdSenseSlotId: 'ca-pub-demo-0003',

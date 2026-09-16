@@ -8,9 +8,7 @@ import {
   CheckCircle2, 
   AlertCircle, 
   Mail, 
-  LogIn, 
-  Copy, 
-  Check
+  LogIn 
 } from 'lucide-react';
 import { auth, googleProvider, signInWithPopup, onAuthStateChanged, User } from '../../config/firebase';
 import { 
@@ -34,9 +32,6 @@ export const SupportAndCommunityPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-
-  // Copied crypto state
-  const [copiedCrypto, setCopiedCrypto] = useState(false);
 
   // Upvoted IDs state
   const [upvotedIds, setUpvotedIds] = useState<Set<string>>(new Set());
@@ -143,64 +138,6 @@ export const SupportAndCommunityPage: React.FC = () => {
         <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
           {supportConfig.freeExplanation}
         </p>
-      </div>
-
-      {/* Voluntary Contribution Options */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-500">
-            Voluntary Sponsorship
-          </h2>
-          <span className="text-[11px] text-zinc-400 font-mono">Optional</span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {supportConfig.donationOptions.map((opt, idx) => (
-            <div
-              key={idx}
-              className="p-4 rounded-xl bg-white dark:bg-zinc-900/80 border border-zinc-200/80 dark:border-zinc-800 flex flex-col justify-between space-y-3 shadow-xs"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-semibold text-xs text-zinc-900 dark:text-zinc-100">
-                    {opt.name}
-                  </span>
-                  <span className="text-[10px] font-mono text-zinc-500 px-1.5 py-0.2 rounded bg-zinc-100 dark:bg-zinc-800">
-                    {opt.recommendedAmount}
-                  </span>
-                </div>
-                <p className="text-[11px] text-zinc-500 leading-relaxed">
-                  {opt.description}
-                </p>
-              </div>
-
-              {opt.url ? (
-                <a
-                  href={opt.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-1.5 px-3 rounded-lg bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 hover:bg-zinc-800 text-xs font-medium text-center transition-colors block"
-                >
-                  Support via {opt.name}
-                </a>
-              ) : (
-                <button
-                  onClick={() => {
-                    if (opt.accountOrAddress) {
-                      navigator.clipboard.writeText(opt.accountOrAddress);
-                      setCopiedCrypto(true);
-                      setTimeout(() => setCopiedCrypto(false), 2500);
-                    }
-                  }}
-                  className="w-full py-1.5 px-3 rounded-lg border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 text-xs font-medium flex items-center justify-center gap-1.5 transition-colors"
-                >
-                  {copiedCrypto ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
-                  <span>{copiedCrypto ? 'Address Copied' : 'Copy Wallet Address'}</span>
-                </button>
-              )}
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Community Feedback & Suggestions */}
