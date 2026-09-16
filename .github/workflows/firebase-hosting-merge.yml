@@ -31,10 +31,13 @@ jobs:
         run: npm run build
 
       - name: Verify Firebase Service Account Secret
-        if: ${{ !(secrets.FIREBASE_SERVICE_ACCOUNT_RESIZE_STUDIO_20E56 || secrets.FIREBASE_SERVICE_ACCOUNT) }}
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RESIZE_STUDIO_20E56 || secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
-          echo "::error title=Missing Secret::Secret FIREBASE_SERVICE_ACCOUNT_RESIZE_STUDIO_20E56 is not set in GitHub repository secrets. Go to Settings -> Secrets and variables -> Actions -> New repository secret"
-          exit 1
+          if [ -z "$FIREBASE_SERVICE_ACCOUNT" ]; then
+            echo "::error title=Missing Secret::Secret FIREBASE_SERVICE_ACCOUNT_RESIZE_STUDIO_20E56 is not set in GitHub repository secrets. Go to Settings -> Secrets and variables -> Actions -> New repository secret"
+            exit 1
+          fi
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
