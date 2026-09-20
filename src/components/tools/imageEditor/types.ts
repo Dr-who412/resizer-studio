@@ -1,4 +1,4 @@
-import { CornerRadii } from '../../../services/imageProcessor';
+import { CornerRadii, ProcessedImageResult } from '../../../services/imageProcessor';
 
 export type FeatureId = 'resize' | 'crop' | 'corners' | 'background' | 'format' | 'quality';
 
@@ -52,4 +52,29 @@ export interface FormatQualitySettings {
 export interface AdvancedSettings {
   fitMode: 'fit' | 'cover' | 'stretch';
   smoothing: 'high' | 'medium' | 'low' | 'pixelated';
+}
+
+export type BatchSizeMode = 'same' | 'different';
+
+export interface BatchItemSettings {
+  width: number;
+  height: number;
+  lockAspectRatio: boolean;
+  aspectRatio: number;
+}
+
+export interface BatchImageItem {
+  id: string;
+  name: string;
+  file?: File;
+  sourceImg: HTMLImageElement;
+  sourceDataUrl: string;
+  originalWidth: number;
+  originalHeight: number;
+  originalAspectRatio: number;
+  fileSizeBytes: number;
+  mimeType: string;
+  customSettings: BatchItemSettings;
+  processedResult?: ProcessedImageResult;
+  isProcessing?: boolean;
 }

@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
-import { Upload, Image as ImageIcon, Sparkles, Clipboard, ArrowUpRight } from 'lucide-react';
+import { Upload, Layers, Sparkles, Clipboard, ArrowUpRight } from 'lucide-react';
 
 interface EmptyUploadStateProps {
-  onFileSelect: (file: File) => void;
+  onFilesSelect: (files: File[]) => void;
   onLoadSample: () => void;
 }
 
 export const EmptyUploadState: React.FC<EmptyUploadStateProps> = ({
-  onFileSelect,
+  onFilesSelect,
   onLoadSample,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -20,14 +20,20 @@ export const EmptyUploadState: React.FC<EmptyUploadStateProps> = ({
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      onFileSelect(e.dataTransfer.files[0]);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      const filesArr = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+      if (filesArr.length > 0) {
+        onFilesSelect(filesArr);
+      }
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      onFileSelect(e.target.files[0]);
+    if (e.target.files && e.target.files.length > 0) {
+      const filesArr = Array.from(e.target.files).filter(f => f.type.startsWith('image/'));
+      if (filesArr.length > 0) {
+        onFilesSelect(filesArr);
+      }
     }
   };
 
@@ -36,6 +42,7 @@ export const EmptyUploadState: React.FC<EmptyUploadStateProps> = ({
       <input
         ref={fileInputRef}
         type="file"
+        multiple
         accept="image/png, image/jpeg, image/webp, image/svg+xml, image/gif"
         onChange={handleInputChange}
         className="hidden"
@@ -47,7 +54,7 @@ export const EmptyUploadState: React.FC<EmptyUploadStateProps> = ({
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
         id="empty-state-dropzone"
-        className="group relative border-2 border-dashed border-zinc-300 dark:border-zinc-700 hover:border-zinc-500 dark:hover:border-zinc-500 bg-white dark:bg-zinc-900/60 rounded-2xl p-10 sm:p-14 text-center cursor-pointer transition-all duration-200 shadow-sm hover:shadow-md"
+        className="group relative border-2 border-dashed border-zinc-300 dark:border-zinc-700 hover:border-emerald-500 dark:hover:border-emerald-500 bg-white dark:bg-zinc-900/60 rounded-2xl p-10 sm:p-14 text-center cursor-pointer transition-all duration-200 shadow-sm hover:shadow-md"
       >
         <div className="flex flex-col items-center justify-center space-y-4">
           
@@ -58,10 +65,10 @@ export const EmptyUploadState: React.FC<EmptyUploadStateProps> = ({
 
           <div className="space-y-1.5">
             <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              Drop an image here
+              Drop single or multiple images here
             </h2>
             <p className="text-sm text-zinc-500 dark:text-zinc-400">
-              or click to browse from your device
+              Select one or batch resize multiple images together to the same or different sizes
             </p>
           </div>
 
@@ -76,8 +83,8 @@ export const EmptyUploadState: React.FC<EmptyUploadStateProps> = ({
               id="choose-image-btn"
               className="px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-white dark:bg-zinc-100 dark:hover:bg-zinc-200 dark:text-zinc-900 text-sm font-semibold inline-flex items-center gap-2 shadow-xs transition-all"
             >
-              <ImageIcon className="w-4 h-4" />
-              <span>Choose Image</span>
+              <Layers className="w-4 h-4" />
+              <span>Select Images (Single or Batch)</span>
             </button>
           </div>
 
@@ -87,6 +94,8 @@ export const EmptyUploadState: React.FC<EmptyUploadStateProps> = ({
               <Clipboard className="w-3.5 h-3.5" />
               <span>Paste with Ctrl+V / ⌘V</span>
             </span>
+            <span>•</span>
+            <span>Multiple files supported</span>
             <span>•</span>
             <span>PNG, JPG, WebP, SVG</span>
           </div>
@@ -103,7 +112,7 @@ export const EmptyUploadState: React.FC<EmptyUploadStateProps> = ({
           className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300 transition-colors py-1 px-2.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800"
         >
           <Sparkles className="w-3.5 h-3.5 text-emerald-500" />
-          <span>Don't have an image? Load a test sample</span>
+          <span>Don't have images? Load test samples</span>
           <ArrowUpRight className="w-3 h-3 text-zinc-400" />
         </button>
       </div>

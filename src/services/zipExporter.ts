@@ -112,3 +112,30 @@ export async function exportScreenshotsZip(
   const content = await zip.generateAsync({ type: 'blob' });
   triggerDownload(content, `${bundleName}.zip`);
 }
+
+export async function exportBatchImagesZip(
+  images: Array<{ filename: string; blob: Blob }>,
+  zipName = 'resized-images.zip'
+): Promise<void> {
+  const zip = new JSZip();
+  // Ensure unique filenames inside zip
+  const nameCounts = new Map<string, number>();
+  images.forEach(img => {
+    let finalName = img.filename;
+    if (nameCounts.has(finalName)) {
+      const count = nameCounts.get(finalName)! + 1;
+      nameCounts.set(finalName, count);
+      const dotIdx = finalName.lastIndexOf('.');
+      if (dotIdx !== -1) {
+        finalName = `${finalName.substring(0, dotIdx)}-${count}${finalName.substring(dotIdx)}`;
+      } else {
+        finalName = `${finalName}-${count}`;
+      }
+    } else {
+      nameCounts.set(finalName, 0);
+    }
+    zip.file(finalName, img.blob);
+  });
+  const content = await zip.generateAsync({ type: 'blob' });
+  triggerDownload(content, zipName);
+}
