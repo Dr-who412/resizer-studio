@@ -25,6 +25,7 @@ import {
 import { loadImage, triggerDownload } from '../../../services/imageProcessor';
 import { exportScreenshotsZip } from '../../../services/zipExporter';
 import { AiImageGeneratorModal } from '../imageEditor/AiImageGeneratorModal';
+import { NumericInput } from '../../common/NumericInput';
 
 type PlatformChoice = 'appStore' | 'googlePlay';
 
@@ -694,12 +695,12 @@ export const ScreenshotGeneratorTool: React.FC = () => {
 
               <div className="flex items-center gap-1.5">
                 <span className="text-[10px] font-mono text-zinc-400">Size</span>
-                <input
-                  type="number"
-                  min="32"
-                  max="120"
+                <NumericInput
+                  min={12}
+                  max={160}
+                  fallbackValue={64}
                   value={titleFontSize}
-                  onChange={(e) => setTitleFontSize(parseInt(e.target.value, 10) || 64)}
+                  onChange={(val) => setTitleFontSize(val)}
                   className="w-14 px-1.5 py-1 text-xs font-mono text-center rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100"
                 />
               </div>

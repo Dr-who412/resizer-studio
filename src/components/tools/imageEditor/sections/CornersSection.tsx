@@ -1,5 +1,6 @@
 import React from 'react';
 import { CornerSettings } from '../types';
+import { NumericInput } from '../../../common/NumericInput';
 
 interface CornersSectionProps {
   settings: CornerSettings;
@@ -44,12 +45,12 @@ export const CornersSection: React.FC<CornersSectionProps> = ({
           <div className="flex items-center justify-between text-xs font-mono">
             <span className="text-zinc-500">Corner Radius</span>
             <div className="flex items-center gap-1.5">
-              <input
-                type="number"
-                min="0"
+              <NumericInput
+                min={0}
                 max={maxRadius}
+                fallbackValue={0}
                 value={uniformRadius}
-                onChange={(e) => onUpdate({ uniformRadius: Math.max(0, parseInt(e.target.value, 10) || 0) })}
+                onChange={(val) => onUpdate({ uniformRadius: val })}
                 className="w-16 px-2 py-1 text-xs font-mono font-bold text-right rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100"
               />
               <span className="text-zinc-400">px</span>
@@ -91,13 +92,13 @@ export const CornersSection: React.FC<CornersSectionProps> = ({
             <div>
               <span className="text-[10px] text-zinc-400 block mb-1">Top-Left</span>
               <div className="relative">
-                <input
-                  type="number"
-                  min="0"
+                <NumericInput
+                  min={0}
                   max={maxRadius}
+                  fallbackValue={0}
                   value={perCorner.topLeft}
-                  onChange={(e) => onUpdate({
-                    perCorner: { ...perCorner, topLeft: Math.max(0, parseInt(e.target.value, 10) || 0) }
+                  onChange={(val) => onUpdate({
+                    perCorner: { ...perCorner, topLeft: val }
                   })}
                   className="w-full px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100"
                 />
@@ -108,13 +109,13 @@ export const CornersSection: React.FC<CornersSectionProps> = ({
             <div>
               <span className="text-[10px] text-zinc-400 block mb-1">Top-Right</span>
               <div className="relative">
-                <input
-                  type="number"
-                  min="0"
+                <NumericInput
+                  min={0}
                   max={maxRadius}
+                  fallbackValue={0}
                   value={perCorner.topRight}
-                  onChange={(e) => onUpdate({
-                    perCorner: { ...perCorner, topRight: Math.max(0, parseInt(e.target.value, 10) || 0) }
+                  onChange={(val) => onUpdate({
+                    perCorner: { ...perCorner, topRight: val }
                   })}
                   className="w-full px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100"
                 />
@@ -125,13 +126,13 @@ export const CornersSection: React.FC<CornersSectionProps> = ({
             <div>
               <span className="text-[10px] text-zinc-400 block mb-1">Bottom-Left</span>
               <div className="relative">
-                <input
-                  type="number"
-                  min="0"
+                <NumericInput
+                  min={0}
                   max={maxRadius}
+                  fallbackValue={0}
                   value={perCorner.bottomLeft}
-                  onChange={(e) => onUpdate({
-                    perCorner: { ...perCorner, bottomLeft: Math.max(0, parseInt(e.target.value, 10) || 0) }
+                  onChange={(val) => onUpdate({
+                    perCorner: { ...perCorner, bottomLeft: val }
                   })}
                   className="w-full px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100"
                 />
@@ -142,13 +143,13 @@ export const CornersSection: React.FC<CornersSectionProps> = ({
             <div>
               <span className="text-[10px] text-zinc-400 block mb-1">Bottom-Right</span>
               <div className="relative">
-                <input
-                  type="number"
-                  min="0"
+                <NumericInput
+                  min={0}
                   max={maxRadius}
+                  fallbackValue={0}
                   value={perCorner.bottomRight}
-                  onChange={(e) => onUpdate({
-                    perCorner: { ...perCorner, bottomRight: Math.max(0, parseInt(e.target.value, 10) || 0) }
+                  onChange={(val) => onUpdate({
+                    perCorner: { ...perCorner, bottomRight: val }
                   })}
                   className="w-full px-2.5 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100"
                 />

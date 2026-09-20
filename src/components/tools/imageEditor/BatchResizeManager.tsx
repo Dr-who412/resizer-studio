@@ -23,6 +23,7 @@ import {
   BatchItemSettings, 
   ResizeSettings 
 } from './types';
+import { NumericInput } from '../../common/NumericInput';
 
 interface BatchResizeManagerProps {
   items: BatchImageItem[];
@@ -322,13 +323,12 @@ export const BatchResizeManager: React.FC<BatchResizeManagerProps> = ({
                 Target Width
               </label>
               <div className="relative">
-                <input
+                <NumericInput
                   id="batch-same-width"
-                  type="number"
-                  min="1"
-                  max="16384"
+                  min={1}
+                  max={16384}
                   value={sameSettings.width}
-                  onChange={(e) => handleWidthInputSame(parseInt(e.target.value, 10) || 1)}
+                  onChange={(val) => handleWidthInputSame(val)}
                   className="w-full pl-3 pr-8 py-2 text-sm font-mono font-semibold rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-emerald-500 transition-all"
                 />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-zinc-400 pointer-events-none">
@@ -345,13 +345,12 @@ export const BatchResizeManager: React.FC<BatchResizeManagerProps> = ({
                 Target Height
               </label>
               <div className="relative">
-                <input
+                <NumericInput
                   id="batch-same-height"
-                  type="number"
-                  min="1"
-                  max="16384"
+                  min={1}
+                  max={16384}
                   value={sameSettings.height}
-                  onChange={(e) => handleHeightInputSame(parseInt(e.target.value, 10) || 1)}
+                  onChange={(val) => handleHeightInputSame(val)}
                   className="w-full pl-3 pr-8 py-2 text-sm font-mono font-semibold rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-emerald-500 transition-all"
                 />
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-zinc-400 pointer-events-none">
@@ -573,13 +572,11 @@ export const BatchResizeManager: React.FC<BatchResizeManagerProps> = ({
                     <div className="space-y-1.5 pt-1" onClick={(e) => e.stopPropagation()}>
                       <div className="grid grid-cols-2 gap-1.5">
                         <div className="relative">
-                          <input
-                            type="number"
-                            min="1"
-                            max="16384"
+                          <NumericInput
+                            min={1}
+                            max={16384}
                             value={item.customSettings.width}
-                            onChange={(e) => {
-                              const val = Math.max(1, parseInt(e.target.value, 10) || 1);
+                            onChange={(val) => {
                               if (isLock && item.customSettings.aspectRatio > 0) {
                                 const newH = Math.round(val / item.customSettings.aspectRatio);
                                 onUpdateItemSettings(item.id, { width: val, height: newH });
@@ -593,13 +590,11 @@ export const BatchResizeManager: React.FC<BatchResizeManagerProps> = ({
                         </div>
 
                         <div className="relative">
-                          <input
-                            type="number"
-                            min="1"
-                            max="16384"
+                          <NumericInput
+                            min={1}
+                            max={16384}
                             value={item.customSettings.height}
-                            onChange={(e) => {
-                              const val = Math.max(1, parseInt(e.target.value, 10) || 1);
+                            onChange={(val) => {
                               if (isLock && item.customSettings.aspectRatio > 0) {
                                 const newW = Math.round(val * item.customSettings.aspectRatio);
                                 onUpdateItemSettings(item.id, { width: newW, height: val });

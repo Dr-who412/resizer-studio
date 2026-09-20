@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link2, Unlink2, RotateCcw, ArrowRight } from 'lucide-react';
 import { ResizeSettings, ImageMetadata } from '../types';
+import { NumericInput } from '../../../common/NumericInput';
 
 interface ResizeSectionProps {
   settings: ResizeSettings;
@@ -57,13 +58,12 @@ export const ResizeSection: React.FC<ResizeSectionProps> = ({
             Width
           </label>
           <div className="relative">
-            <input
+            <NumericInput
               id="resize-width-input"
-              type="number"
-              min="1"
-              max="16384"
+              min={1}
+              max={16384}
               value={width}
-              onChange={(e) => handleWidthInput(parseInt(e.target.value, 10) || 1)}
+              onChange={(val) => handleWidthInput(val)}
               className="w-full pl-3 pr-8 py-2 text-sm font-mono font-semibold rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 focus:bg-white dark:focus:bg-zinc-900 transition-all"
             />
             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-zinc-400 pointer-events-none">
@@ -80,13 +80,12 @@ export const ResizeSection: React.FC<ResizeSectionProps> = ({
             Height
           </label>
           <div className="relative">
-            <input
+            <NumericInput
               id="resize-height-input"
-              type="number"
-              min="1"
-              max="16384"
+              min={1}
+              max={16384}
               value={height}
-              onChange={(e) => handleHeightInput(parseInt(e.target.value, 10) || 1)}
+              onChange={(val) => handleHeightInput(val)}
               className="w-full pl-3 pr-8 py-2 text-sm font-mono font-semibold rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 focus:bg-white dark:focus:bg-zinc-900 transition-all"
             />
             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-zinc-400 pointer-events-none">
